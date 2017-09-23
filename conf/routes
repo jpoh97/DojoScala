@@ -6,6 +6,7 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 GET     /places                     controllers.HomeController.listPlaces
+GET     /places/:id                 controllers.HomeController.getPlace(id:Int)
 POST    /add                        controllers.HomeController.addPlace
 DELETE  /delete/:id                 controllers.HomeController.deletePlace(id:Int)
 PUT     /update                     controllers.HomeController.updatePlace

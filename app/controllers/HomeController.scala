@@ -25,6 +25,11 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(json)
   }
 
+  def getPlace(id:Int) = Action{
+    val p = Json.toJson(places.find(_.id == id))
+    Ok(p)
+  }
+
   def addPlace = Action{
     request => val json = request.body.asJson.get
 
@@ -49,7 +54,7 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
           places = places.map(x => if(x.id == success.get.id)newPlace else x)
 
           Ok(Json.toJson(Map("Response" -> "Actualizando...")))
-        case JsError(e) => BadRequest(Json.toJson(Map("Error" -> e)))
+        case JsError(e) => BadRequest(Json.toJson(Map("Error" -> e.toString())))
       }
   }
 
